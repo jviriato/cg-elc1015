@@ -8,6 +8,7 @@ Graphic::Graphic(int x, int y, int height, string label)
     setSize(height);
     size_canvas = width / 2;
     vector<double> pontos;
+    bool graphic_visible = false;
 }
 
 void Graphic::setSize(int height)
@@ -63,15 +64,16 @@ void Graphic::loadVector(vector<double> pts)
 
 void Graphic::putDots()
 {
-    double top    = getY() + size_canvas;
+    double top = getY() + size_canvas;
     double middle = ((getY() + (getY() + size_canvas))) / 2;
-    double bottom = getY() ;// + getX();
+    double bottom = getY(); // + getX();
     double offset = 25;
     double space_x = (width - offset) / (pontos.size());
-    double space_y = (size_canvas/2) - 10; // pra nunca chegar no topo
+    double space_y = (size_canvas / 2) - 10; // pra nunca chegar no topo
     vector<float> rgb = RGBtoFloat(210, 77, 87);
     color(rgb[0], rgb[1], rgb[2]);
-    for(auto i = 0; i < pontos.size(); i++){
+    for (auto i = 0; i < pontos.size(); i++)
+    {
         double number_scaled = pontos[i] / getBiggest();
         printf("[%d] %f\n", i, pontos[i]);
         circleFill(getX() + offset + (i * space_x), (middle + (number_scaled * space_y)), 5, 100);
@@ -81,8 +83,9 @@ void Graphic::putDots()
 double Graphic::getBiggest()
 {
     double biggest = abs(pontos[0]);
-    for(auto i = 0; i < pontos.size(); i++){
-        if( abs(pontos[i]) > biggest )
+    for (auto i = 0; i < pontos.size(); i++)
+    {
+        if (abs(pontos[i]) > biggest)
             biggest = abs(pontos[i]);
     }
     return biggest;

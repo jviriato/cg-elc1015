@@ -26,6 +26,7 @@ class Graphic : public Controller
     void putDots();
     double getBiggest();
     double resizeScale();
+    bool graphic_visible;
 
 };
 

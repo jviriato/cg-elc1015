@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include "dct.h"
 #include "Button.h"
+#include "Checkbox.h"
 #include "auxFunc.h"
 #include "Graphic.h"
 #include "gl_canvas2d.h"
@@ -16,11 +17,13 @@ using namespace std;
 //#pragma comment(lib, "glu32.lib")
 //#pragma comment(lib, "glaux.lib")
 //#pragma comment(lib, "glut32.lib")
+
 #define WIDTH 1024
 #define HEIGHT 600
 
 //variaveis globais
 vector<Button *> buttons;
+vector<Checkbox *> checkboxes;
 vector<Graphic *> graphics;
 int opcao = 50;
 float global = 0;
@@ -28,6 +31,8 @@ float global = 0;
 int mouse_x = 0;
 int mouse_y = 0;
 int mouse_state = 0;
+
+bool f_load = false;
 
 vector<int> amostras_d;
 vector<double> dct;
@@ -48,7 +53,7 @@ void buildBaseFunctions()
    color(1, 0, 0);
    double y = 0;
    int M = 8;
-   for (int u = 0; u < 8; u++)
+   for (int u = 0; u < M; u++)
    {
       for (int x = 0; x < M; x += 1)
       {
@@ -76,6 +81,20 @@ void buildButtons()
    buttons.push_back(b);
 }
 
+void buildCheckboxes()
+{
+   Checkbox *c;
+   color(1, 0, 0);
+   c = new Checkbox(290, 570, "Input");
+   checkboxes.push_back(c);
+   c = new Checkbox(290 + 90, 570, "DCT");
+   checkboxes.push_back(c);
+   c = new Checkbox(290 + 180, 570, "IDCT");
+   checkboxes.push_back(c);
+   c = new Checkbox(290 + 270, 570, "Diff");
+   checkboxes.push_back(c);
+}
+
 void buildGraphics()
 {
    int start_position_x = 80;
@@ -83,38 +102,40 @@ void buildGraphics()
    int offset = size + 30;
    int offset_y = 30;
    int start_position_y = 300;
-   Graphic *g;
-   g = new Graphic(start_position_x, start_position_y, size, "Input");
-   vector<int> input = readFile("input.dct");
-   vector<double> aux(input.begin()+1, input.end());
-   g->loadVector(aux);
-   graphics.push_back(g);
-   g = new Graphic(start_position_x + offset, start_position_y, size, "DCT");
-   vector<double> dct = DCT(input);
-   g->loadVector(dct);
-   graphics.push_back(g);
-   g = new Graphic(start_position_x, start_position_y - (size/2) - offset_y, size, "IDCT");
-   vector<double> idct = IDCT(dct);
-   g->loadVector(idct);
-   graphics.push_back(g);
 
-   g = new Graphic(start_position_x + offset, start_position_y - (size/2) - offset_y, size, "Diff");
-   vector<double> diff = Diff(aux, idct);
-   g->loadVector(diff);
-   graphics.push_back(g);
+   if (f_load)
+   {
+      Graphic *g;
+      g = new Graphic(start_position_x, start_position_y, size, "Input");
+      vector<int> input = readFile("input.dct");
+      vector<double> aux(input.begin() + 1, input.end());
+      g->loadVector(aux);
+      graphics.push_back(g);
+      g = new Graphic(start_position_x + offset, start_position_y, size, "DCT");
+      vector<double> dct = DCT(input);
+      g->loadVector(dct);
+      graphics.push_back(g);
+      g = new Graphic(start_position_x, start_position_y - (size / 2) - offset_y, size, "IDCT");
+      vector<double> idct = IDCT(dct);
+      g->loadVector(idct);
+      graphics.push_back(g);
+      g = new Graphic(start_position_x + offset, start_position_y - (size / 2) - offset_y, size, "Diff");
+      vector<double> diff = Diff(aux, idct);
+      g->loadVector(diff);
+      graphics.push_back(g);
+   }
 }
-
 
 void buildScreen()
 {
    buildBackground();
    buildGraphics();
    buildButtons();
+   buildCheckboxes();
 }
 
 void renderScreen()
 {
-   buildBaseFunctions();
 }
 
 void trataButtons(Button *button, int mouse_x, int mouse_y, int state)
@@ -124,10 +145,25 @@ void trataButtons(Button *button, int mouse_x, int mouse_y, int state)
    {
       if (button->isPressed)
       {
-         readFile("input.dct");
+         renderScreen();
+         f_load = true;
+         buildGraphics();
          button->reset();
       }
    }
+   if (strcmp(button->getLabel(), "Save") == 0)
+   {
+      if (button->isPressed)
+      {
+         writeFile(idct);
+         button->reset();
+      }
+   }
+}
+
+void trataCheckboxes(Checkbox *checkbox, int mouse_x, int mouse_y, int state)
+{
+   checkbox->checkboxActions(mouse_x, mouse_y, state);
 }
 
 //funcao chamada continuamente. Deve-se controlar o que desenhar por meio de variaveis
@@ -146,47 +182,21 @@ void render()
       graphic->render();
    }
 
-   if (opcao == 'a')
+   for (auto &checkbox : checkboxes)
    {
-      clear(1, 1, 1);
-      color(1, 0, 0);
+      checkbox->render();
    }
-
-   if (opcao == 's')
-   {
-      clear(1, 1, 1);
-      color(1, 0, 0);
-      double y = 0;
-      int M = 8;
-      for (int u = 1; u < 9; u++)
-      {
-         for (int x = 0; x < M; x += 1)
-         {
-            y = cos(((2 * x + 1) * u * M_PI) / (M * 2));
-            // point(10 * x + 100, y*10  + HEIGHT-10 - ((u + 1) * 50));
-            // point(10 * x + 100, y*10  + HEIGHT-10 - ((u * 50)));
-            circleFill(5 + (10 * x), (10 * y) + HEIGHT - 10 - ((u * 50 /*50 = espaçamento*/)), 2, 100);
-         }
-      }
-   }
-
    coordsOfMouse(mouse_x, mouse_y);
 }
 
 //funcao chamada toda vez que uma tecla for pressionada
 void keyboard(int key)
 {
-   printf("\nTecla: %d", key);
-   if (key < 200)
-   {
-      opcao = key;
-   }
 }
 
 //funcao chamada toda vez que uma tecla for liberada
 void keyboardUp(int key)
 {
-   printf("\nLiberou: %d", key);
 }
 
 //funcao para tratamento de mouse: cliques, movimentos e arrastos
@@ -202,7 +212,11 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
    {
       trataButtons(button, mouse_x, mouse_y, state);
    }
-   // printf("xmouse: %d ymouse: %d\n", x, y);
+
+   for (Checkbox *checkbox : checkboxes)
+   {
+      trataCheckboxes(checkbox, mouse_x, mouse_y, state);
+   }
 }
 
 int main(void)
