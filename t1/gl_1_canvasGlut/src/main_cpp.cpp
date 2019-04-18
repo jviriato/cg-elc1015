@@ -29,6 +29,11 @@ int mouse_x = 0;
 int mouse_y = 0;
 int mouse_state = 0;
 
+vector<int> amostras_d;
+vector<double> dct;
+vector<double> idct;
+vector<double> diff;
+
 void buildBackground()
 {
    vector<float> rgb = RGBtoFloat(228, 233, 237); //cinza
@@ -38,7 +43,7 @@ void buildBackground()
 
 void buildBaseFunctions()
 {
-   color(0,0,0);
+   color(0, 0, 0);
    text(WIDTH - 150, 540, "Funcoes Base");
    color(1, 0, 0);
    double y = 0;
@@ -48,36 +53,57 @@ void buildBaseFunctions()
       for (int x = 0; x < M; x += 1)
       {
          y = cos(((2 * x + 1) * u * M_PI) / (M * 2));
-         circleFill( WIDTH - 130 + (5 + (10 * x)), (10 * y) + HEIGHT - 100 - ((u * 50 /*50 = espaçamento*/)), 2, 100);
+         circleFill(WIDTH - 130 + (5 + (10 * x)), (10 * y) + HEIGHT - 100 - ((u * 50 /*50 = espaçamento*/)), 2, 100);
       }
    }
 }
 
 void buildButtons()
 {
-   vector<float> rgb = RGBtoFloat(107, 185, 240);
-   Button *b;
-   int box = 50;
+   int box = 55;
    int offset = 10;
    int start_position_x = 80;
    int start_position_y = 540;
+   vector<float> rgb = RGBtoFloat(107, 185, 240);
+   Button *b;
    b = new Button(start_position_x, start_position_y, box, box, "Load", rgb[0], rgb[1], rgb[2]);
    buttons.push_back(b);
    rgb = RGBtoFloat(46, 204, 113);
-   // Button *b;
-   // b = new Button(start_position_x + box + offset, start_position_y, box, box, "Save", rgb[0], rgb[1], rgb[2]);
-   // buttons.push_back(b);
+   b = new Button(start_position_x + box + offset, start_position_y, box, box, "Save", rgb[0], rgb[1], rgb[2]);
+   buttons.push_back(b);
+   rgb = RGBtoFloat(129, 207, 224);
+   b = new Button(start_position_x + (box * 2) + (offset * 2), start_position_y, box, box, "Bases", rgb[0], rgb[1], rgb[2]);
+   buttons.push_back(b);
 }
 
 void buildGraphics()
 {
    int start_position_x = 80;
    int size = 400;
+   int offset = size + 30;
+   int offset_y = 30;
    int start_position_y = 300;
    Graphic *g;
-   g = new Graphic(start_position_x, start_position_y, size, "DCT");
+   g = new Graphic(start_position_x, start_position_y, size, "Input");
+   vector<int> input = readFile("input.dct");
+   vector<double> aux(input.begin()+1, input.end());
+   g->loadVector(aux);
+   graphics.push_back(g);
+   g = new Graphic(start_position_x + offset, start_position_y, size, "DCT");
+   vector<double> dct = DCT(input);
+   g->loadVector(dct);
+   graphics.push_back(g);
+   g = new Graphic(start_position_x, start_position_y - (size/2) - offset_y, size, "IDCT");
+   vector<double> idct = IDCT(dct);
+   g->loadVector(idct);
+   graphics.push_back(g);
+
+   g = new Graphic(start_position_x + offset, start_position_y - (size/2) - offset_y, size, "Diff");
+   vector<double> diff = Diff(aux, idct);
+   g->loadVector(diff);
    graphics.push_back(g);
 }
+
 
 void buildScreen()
 {
@@ -89,6 +115,19 @@ void buildScreen()
 void renderScreen()
 {
    buildBaseFunctions();
+}
+
+void trataButtons(Button *button, int mouse_x, int mouse_y, int state)
+{
+   button->buttonActions(mouse_x, mouse_y, state);
+   if (strcmp(button->getLabel(), "Load") == 0)
+   {
+      if (button->isPressed)
+      {
+         readFile("input.dct");
+         button->reset();
+      }
+   }
 }
 
 //funcao chamada continuamente. Deve-se controlar o que desenhar por meio de variaveis
@@ -131,11 +170,6 @@ void render()
       }
    }
 
-   string x_char = to_string(mouse_x);
-   x_char.c_str();
-   string y_char = to_string(mouse_y);
-   y_char.c_str();
-
    coordsOfMouse(mouse_x, mouse_y);
 }
 
@@ -164,20 +198,24 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
    mouse_y = y;
    mouse_state = state;
 
-   for(Button *button : buttons){
-      button->buttonActions(mouse_x, mouse_y, state);
-      printf("%s\n", button->getLabel());
-      if(strcmp(button->getLabel(), "Load") == 0){
-         if(button->isPressed){
-            readFile("input.dct");
-         }
-      }
+   for (Button *button : buttons)
+   {
+      trataButtons(button, mouse_x, mouse_y, state);
    }
    // printf("xmouse: %d ymouse: %d\n", x, y);
 }
 
 int main(void)
 {
+
+   vector<int> amostras;
+   amostras = readFile("input.dct");
+   amostras.erase(amostras.begin());
+   dct = DCT(amostras);
+   idct = IDCT(dct);
+   vector<double> amostras_d(amostras.begin(), amostras.end());
+   diff = Diff(amostras_d, idct);
+
    initCanvas(WIDTH, HEIGHT, "T1 - Transformada do Cosseno");
    buildScreen();
    runCanvas();

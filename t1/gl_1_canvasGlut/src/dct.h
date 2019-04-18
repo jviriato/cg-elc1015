@@ -12,5 +12,5 @@ double __calcC_DCT(double u);
 vector<double> DCT(const vector<int> &intVec);
 vector<double> IDCT(const vector<double> DCT);
 vector<double> Diff(vector<double> original, const vector<double> IDCT);
-
+vector<double> Quantizacao1D(int factor, int size);
 #endif
