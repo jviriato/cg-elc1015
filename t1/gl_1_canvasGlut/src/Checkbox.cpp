@@ -6,6 +6,7 @@ Checkbox::Checkbox(int x, int y, string l)
 {
     setPosition(x, y);
     setLabel(l);
+    bool hide = false;
 }
 
 void Checkbox::checkboxActions(int mx, int my, int state)
@@ -65,15 +66,17 @@ bool Checkbox::detectCollision(int mouse_x, int mouse_y)
 
 void Checkbox::render()
 {
-    if (isPressed)
-    {
-        drawActive();
+    if(!hide){
+        if (isPressed)
+        {
+            drawActive();
+        }
+        else
+        {
+            drawInactive();
+        }
+        text(getX() + 20, getY() - 5, getLabel());
     }
-    else
-    {
-        drawInactive();
-    }
-    text(getX() + 20, getY() - 5, getLabel());
 }
 
 float Checkbox::getArea()

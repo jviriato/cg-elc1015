@@ -27,6 +27,7 @@ class Graphic : public Controller
     double getBiggest();
     double resizeScale();
     bool graphic_visible;
+    bool canvas_visible;
 
 };
 

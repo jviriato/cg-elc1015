@@ -8,7 +8,8 @@ Graphic::Graphic(int x, int y, int height, string label)
     setSize(height);
     size_canvas = width / 2;
     vector<double> pontos;
-    bool graphic_visible = false;
+    bool graphic_visible = true;
+    bool canvas_visible = true;
 }
 
 void Graphic::setSize(int height)
@@ -19,11 +20,18 @@ void Graphic::setSize(int height)
 
 void Graphic::render()
 {
-    createBackgroundRectangle();
-    createRectangle();
-    createTitleBar();
-    createMiddleLine();
-    putDots();
+    if (canvas_visible)
+    {
+        createBackgroundRectangle();
+        createRectangle();
+        createTitleBar();
+        createMiddleLine();
+    }
+    if (graphic_visible)
+    {
+        putDots();
+    }
+
 }
 
 void Graphic::createTitleBar()
@@ -75,7 +83,7 @@ void Graphic::putDots()
     for (auto i = 0; i < pontos.size(); i++)
     {
         double number_scaled = pontos[i] / getBiggest();
-        printf("[%d] %f\n", i, pontos[i]);
+        // printf("[%d] %f\n", i, pontos[i]);
         circleFill(getX() + offset + (i * space_x), (middle + (number_scaled * space_y)), 5, 100);
     }
 }

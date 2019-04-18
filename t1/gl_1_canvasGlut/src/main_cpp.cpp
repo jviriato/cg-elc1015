@@ -25,6 +25,7 @@ using namespace std;
 vector<Button *> buttons;
 vector<Checkbox *> checkboxes;
 vector<Graphic *> graphics;
+vector<Graphic *> baseGraphics;
 int opcao = 50;
 float global = 0;
 
@@ -46,20 +47,40 @@ void buildBackground()
    color(1, 0, 0);
 }
 
-void buildBaseFunctions()
+void buildBaseFunctions(int M)
 {
-   color(0, 0, 0);
-   text(WIDTH - 150, 540, "Funcoes Base");
-   color(1, 0, 0);
    double y = 0;
-   int M = 8;
+   vector<double> amostras_base;
+   vector<vector<double>> matrix_base;
    for (int u = 0; u < M; u++)
    {
-      for (int x = 0; x < M; x += 1)
+      for (int i = 0; i < M; i++)
       {
-         y = cos(((2 * x + 1) * u * M_PI) / (M * 2));
-         circleFill(WIDTH - 130 + (5 + (10 * x)), (10 * y) + HEIGHT - 100 - ((u * 50 /*50 = espaçamento*/)), 2, 100);
+         y = cos(((2 * i + 1) * u * M_PI) / (M * 2));
+         amostras_base.push_back(y);
       }
+      matrix_base.push_back(amostras_base);
+      amostras_base.erase(amostras_base.begin(), amostras_base.end());
+   }
+
+   color(1, 0, 0);
+   int start_position_x = 80;
+   int start_position_y = 400;
+   int size = 200;
+   int offset = size;
+   int offset_y = 30;
+
+   for (auto i = 0; i < M; i++)
+   {
+      int position_x = (start_position_x + ((i % 4) * size));
+      if (i == 4)
+         start_position_y -= size;
+      Graphic *base;
+      base = new Graphic(position_x, start_position_y, size, "");
+      base->loadVector(matrix_base[i]);
+      base->graphic_visible = true;
+      base->canvas_visible = true;
+      baseGraphics.push_back(base);
    }
 }
 
@@ -103,51 +124,85 @@ void buildGraphics()
    int offset_y = 30;
    int start_position_y = 300;
 
-   if (f_load)
+   Graphic *g;
+   g = new Graphic(start_position_x, start_position_y, size, "Input");
+   vector<int> input = readFile("input.dct");
+   vector<double> aux(input.begin() + 1, input.end());
+   g->loadVector(aux);
+   g->graphic_visible = false;
+   graphics.push_back(g);
+   g = new Graphic(start_position_x + offset, start_position_y, size, "DCT");
+   vector<double> dct = DCT(input);
+   g->loadVector(dct);
+   g->graphic_visible = false;
+   graphics.push_back(g);
+   g = new Graphic(start_position_x, start_position_y - (size / 2) - offset_y, size, "IDCT");
+   vector<double> idct = IDCT(dct);
+   g->loadVector(idct);
+   g->graphic_visible = false;
+   graphics.push_back(g);
+   g = new Graphic(start_position_x + offset, start_position_y - (size / 2) - offset_y, size, "Diff");
+   vector<double> diff = Diff(aux, idct);
+   g->loadVector(diff);
+   g->graphic_visible = false;
+   graphics.push_back(g);
+}
+
+void visibleGraphics()
+{
+   for (Graphic *graphic : graphics)
    {
-      Graphic *g;
-      g = new Graphic(start_position_x, start_position_y, size, "Input");
-      vector<int> input = readFile("input.dct");
-      vector<double> aux(input.begin() + 1, input.end());
-      g->loadVector(aux);
-      graphics.push_back(g);
-      g = new Graphic(start_position_x + offset, start_position_y, size, "DCT");
-      vector<double> dct = DCT(input);
-      g->loadVector(dct);
-      graphics.push_back(g);
-      g = new Graphic(start_position_x, start_position_y - (size / 2) - offset_y, size, "IDCT");
-      vector<double> idct = IDCT(dct);
-      g->loadVector(idct);
-      graphics.push_back(g);
-      g = new Graphic(start_position_x + offset, start_position_y - (size / 2) - offset_y, size, "Diff");
-      vector<double> diff = Diff(aux, idct);
-      g->loadVector(diff);
-      graphics.push_back(g);
+      graphic->graphic_visible = true;
+      graphic->canvas_visible = true;
    }
 }
 
 void buildScreen()
 {
    buildBackground();
-   buildGraphics();
    buildButtons();
-   buildCheckboxes();
 }
 
 void renderScreen()
 {
 }
 
+void setCheckboxes()
+{
+   for (Checkbox *checkbox : checkboxes)
+   {
+      checkbox->isPressed = true;
+   }
+}
+
+void hideGraphics(vector<Graphic *> graphics)
+{
+   for (Graphic *graphic : graphics)
+   {
+      graphic->graphic_visible = false;
+      graphic->canvas_visible = false;
+   }
+   for (Checkbox *checkbox : checkboxes)
+   {
+      checkbox->isPressed = false;
+      checkbox->hide = true;
+   }
+}
+
 void trataButtons(Button *button, int mouse_x, int mouse_y, int state)
 {
+
    button->buttonActions(mouse_x, mouse_y, state);
    if (strcmp(button->getLabel(), "Load") == 0)
    {
       if (button->isPressed)
       {
+         hideGraphics(baseGraphics);
          renderScreen();
-         f_load = true;
          buildGraphics();
+         visibleGraphics();
+         buildCheckboxes();
+         setCheckboxes();
          button->reset();
       }
    }
@@ -159,11 +214,56 @@ void trataButtons(Button *button, int mouse_x, int mouse_y, int state)
          button->reset();
       }
    }
+
+   if (strcmp(button->getLabel(), "Bases") == 0)
+   {
+      if (button->isPressed)
+      {
+         hideGraphics(graphics);
+         buildBaseFunctions(8);
+         button->reset();
+      }
+   }
+}
+
+void trataGraphics(Graphic *graphic, bool flag, const char *label)
+{
+   if (strcmp(graphic->getLabel(), label) == 0 && flag == 1)
+   {
+      graphic->graphic_visible = true;
+   }
+   else if (strcmp(graphic->getLabel(), label) == 0 && flag == 0)
+   {
+      graphic->graphic_visible = false;
+   }
 }
 
 void trataCheckboxes(Checkbox *checkbox, int mouse_x, int mouse_y, int state)
 {
    checkbox->checkboxActions(mouse_x, mouse_y, state);
+   int size_array = 4;
+   const char *options[4] = {"Input", "DCT", "IDCT", "Diff"};
+
+   for (auto i = 0; i < size_array; i++)
+   {
+      if (strcmp(checkbox->getLabel(), options[i]) == 0)
+      {
+         if (checkbox->isPressed)
+         {
+            for (Graphic *graphic : graphics)
+            {
+               trataGraphics(graphic, true, options[i]);
+            }
+         }
+         else if (!checkbox->isPressed)
+         {
+            for (Graphic *graphic : graphics)
+            {
+               trataGraphics(graphic, false, options[i]);
+            }
+         }
+      }
+   }
 }
 
 //funcao chamada continuamente. Deve-se controlar o que desenhar por meio de variaveis
@@ -178,6 +278,11 @@ void render()
    }
 
    for (auto &graphic : graphics)
+   {
+      graphic->render();
+   }
+
+   for (auto &graphic : baseGraphics)
    {
       graphic->render();
    }
