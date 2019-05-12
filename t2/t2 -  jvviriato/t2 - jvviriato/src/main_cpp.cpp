@@ -48,8 +48,8 @@ void buildBackground()
 
 void buildScreen()
 {
-   w = new Wheel(WIDTH / 2.0,HEIGHT / 2.0, 40, 10);
-   p = new Pedal(WIDTH / 2.0 + 100,HEIGHT / 2.0);
+   w = new Wheel(WIDTH / 2.00, HEIGHT / 2.0, 40.00, 10);
+   p = new Pedal(WIDTH / 2.0 + 100, HEIGHT / 2.0);
 }
 
 void renderScreen()
@@ -72,7 +72,7 @@ void keyboard(int key)
 {
    if (key == 'd')
    {
-      w->updateRims();
+      w->update();
    }
 }
 

@@ -1,8 +1,7 @@
 #ifndef WHEEL_H
 #define WHEEL_H
-#include "gl_canvas2d.h"
 #include "Piece.h"
-
+#include "auxFunc.h"
 
 /**
     Wheel.h
@@ -22,25 +21,25 @@
 class Wheel
 {
 private:
-    float x;
-    float y;
+    double x;
+    double y;
     int rims;
-    std::vector<std::tuple<int, int>> position_rims;
+    std::vector<std::tuple<double, double>> position_rims;
     int radius;
 public:
-    Wheel(float x, float y, int radius, int rims);
+    Wheel(double x, double y, double radius, int rims);
     int getX();
     int getY();
     int getRims();
     int getRadius();
-    float calcAngle(int num);
+    double calcAngle(int num);
     void drawRims();
     void drawTire();
     void createRims();
-    void updateRims();
-    std::tuple <float, float> translateMatrix(float x, float y, float offset_x, float offset_y);
-    std::tuple <float, float> rotateMatrix(float angle, int x, int y);
+    void update();
     void render();
+    std::tuple <double, double> translateMatrix(double x, double y, double offset_x, double offset_y);
+    std::tuple <double, double> rotateMatrix(double angle, double x, double y);
     ~Wheel();
 };
 

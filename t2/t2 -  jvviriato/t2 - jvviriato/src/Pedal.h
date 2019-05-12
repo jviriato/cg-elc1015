@@ -9,7 +9,8 @@
     @version 0.1 2019
 */
 
-class Pedal : public Piece
+
+class Pedal
 {
 private:
     float x;
