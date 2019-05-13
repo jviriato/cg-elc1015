@@ -7,10 +7,13 @@
 #include <vector>
 
 #include "gl_canvas2d.h"
+
 // Includes do T2
 #include "auxFunc.h"
+#include "Person.h"
 #include "Bicycle.h"
 
+// M_PI é definido pelo GCC mas não pelo MinGW
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -25,20 +28,19 @@ using namespace std;
 #define WIDTH 1024
 #define HEIGHT 600
 
-Wheel *w;
-Pedal *p;
-Bicycle *b;
 
-//variaveis globais
-int opcao = 50;
-double global = 0;
+// Classes globais que utilizarei neste trabalho
+Bicycle *b;
+Person *p;
+
+// variaveis globais
 
 int mouse_x = 0;
 int mouse_y = 0;
 int mouse_state = 0;
 
-bool f_load = false;
 
+//  Classe que pinta o fundo.
 void buildBackground()
 {
    vector<double> rgb = RGBtodouble(228, 233, 237); //cinza
@@ -46,19 +48,21 @@ void buildBackground()
    color(1, 0, 0);
 }
 
+// Função onde ocorre a construção dos objetos
 void buildScreen()
 {
    // w = new Wheel(WIDTH / 2.00, HEIGHT / 2.0, 40.00, 10);
    // p = new Pedal(WIDTH / 2.0 + 100, HEIGHT / 2.0);
    b = new Bicycle(WIDTH / 2.00, HEIGHT / 2.0);
+   p = new Person(550, 428);
 }
 
+// Função onde ocorre a renderização dos objetos
 void renderScreen()
 {
    color(0, 0, 0);
-   // w->render();
-   // p->render();
    b->render();
+   p->render();
 }
 
 //funcao chamada continuamente. Deve-se controlar o que desenhar por meio de variaveis

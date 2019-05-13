@@ -9,6 +9,7 @@ private:
     double coords_x[4];
     double coords_y[4];
 
+
 public:
     Frame(double coords_x[4], double coords_y[4]);
     void render();

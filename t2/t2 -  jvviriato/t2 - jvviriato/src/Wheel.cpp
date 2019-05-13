@@ -96,7 +96,7 @@ void Wheel::drawRims()
     /*
         Função que desenha os aros
     */
-    color(0, 0, 1);
+    color(0, 0, 0);
     circleFill(this->x, this->y, 5, 50);
 
     for (int i = 0; i < rims; i++)
