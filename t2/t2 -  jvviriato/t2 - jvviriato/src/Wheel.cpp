@@ -9,8 +9,6 @@
 */
 
 // Macros para converter ângulos
-#define degreesToRadians(angleDegrees) ((angleDegrees)*M_PI / 180.0)
-#define radiansToDegrees(angleRadians) ((angleRadians)*180.0 / M_PI)
 
 Wheel::Wheel(double x, double y, double radius, int rims)
 {
@@ -18,6 +16,15 @@ Wheel::Wheel(double x, double y, double radius, int rims)
     this->y = y;
     this->rims = rims;
     this->radius = radius;
+    this->createRims();
+}
+
+Wheel::Wheel(double x, double y)
+{
+    this->x = x;
+    this->y = y;
+    this->rims = 8;
+    this->radius = 40;
     this->createRims();
 }
 
@@ -169,4 +176,8 @@ void Wheel::render()
 {
     this->drawTire();
     this->drawRims();
+}
+
+Wheel::~Wheel()
+{
 }

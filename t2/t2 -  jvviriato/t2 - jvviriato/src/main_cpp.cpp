@@ -9,8 +9,7 @@
 #include "gl_canvas2d.h"
 // Includes do T2
 #include "auxFunc.h"
-#include "Wheel.h"
-#include "Pedal.h"
+#include "Bicycle.h"
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -28,10 +27,11 @@ using namespace std;
 
 Wheel *w;
 Pedal *p;
+Bicycle *b;
 
 //variaveis globais
 int opcao = 50;
-float global = 0;
+double global = 0;
 
 int mouse_x = 0;
 int mouse_y = 0;
@@ -41,22 +41,24 @@ bool f_load = false;
 
 void buildBackground()
 {
-   vector<float> rgb = RGBtoFloat(228, 233, 237); //cinza
+   vector<double> rgb = RGBtodouble(228, 233, 237); //cinza
    clear(rgb[0], rgb[1], rgb[2]);
    color(1, 0, 0);
 }
 
 void buildScreen()
 {
-   w = new Wheel(WIDTH / 2.00, HEIGHT / 2.0, 40.00, 10);
-   p = new Pedal(WIDTH / 2.0 + 100, HEIGHT / 2.0);
+   // w = new Wheel(WIDTH / 2.00, HEIGHT / 2.0, 40.00, 10);
+   // p = new Pedal(WIDTH / 2.0 + 100, HEIGHT / 2.0);
+   b = new Bicycle(WIDTH / 2.00, HEIGHT / 2.0);
 }
 
 void renderScreen()
 {
    color(0, 0, 0);
-   w->render();
-   p->render();
+   // w->render();
+   // p->render();
+   b->render();
 }
 
 //funcao chamada continuamente. Deve-se controlar o que desenhar por meio de variaveis
@@ -72,7 +74,7 @@ void keyboard(int key)
 {
    if (key == 'd')
    {
-      w->update();
+      b->update();
    }
 }
 

@@ -1,8 +1,12 @@
 #ifndef WHEEL_H
 #define WHEEL_H
-#include "Piece.h"
+#include <tuple>
+#include <iostream>
+#include <tuple>
+#include <vector>
+#include <cmath>
+#include "gl_canvas2d.h"
 #include "auxFunc.h"
-
 /**
     Wheel.h
     Propósito: Gera Rodas
@@ -28,6 +32,7 @@ private:
     int radius;
 public:
     Wheel(double x, double y, double radius, int rims);
+    Wheel(double x, double y);
     int getX();
     int getY();
     int getRims();

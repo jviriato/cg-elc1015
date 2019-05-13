@@ -6,22 +6,21 @@
 #include <vector>
 #include <cmath>
 #include "gl_canvas2d.h"
+#include "auxFunc.h"
 
 class Piece
 {
 private:
-    float x;
-    float y;
+    double x;
+    double y;
 
 public:
-    Piece(float x, float y);
+    Piece(double x, double y);
     void build();
     void update();
     void draw();
-    std::tuple<float, float> translateMatrix(float x, float y, float offset_x, float offset_y);
-    std::tuple<float, float> rotateMatrix(float angle, int x, int y);
-
-    ~Piece();
+    std::tuple<double, double> translateMatrix(double x, double y, double offset_x, double offset_y);
+    std::tuple<double, double> rotateMatrix(double angle, int x, int y);
 };
 
 #endif

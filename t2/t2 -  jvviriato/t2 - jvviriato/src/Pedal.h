@@ -1,6 +1,11 @@
 #define PEDAL_H
-#include "Piece.h"
-
+#include <tuple>
+#include <iostream>
+#include <tuple>
+#include <vector>
+#include <cmath>
+#include "gl_canvas2d.h"
+#include "auxFunc.h"
 /**
     Pedal.h
     Propósito: Gerar Pedais
@@ -9,24 +14,20 @@
     @version 0.1 2019
 */
 
-
 class Pedal
 {
 private:
-    float x;
-    float y;
-
-    float x_pedal1;
-    float y_pedal1;
-    float x_pedal2;
-    float y_pedal2;
-
+    double x;
+    double y;
+    double x_pedal1;
+    double x_pedal2;
+    double y_pedal1;
+    double y_pedal2;
 public:
-    Pedal(float x, float y);
+    Pedal(double x, double y);
+    Pedal();
     void createPedal();
     void update();
     void render();
-    std::tuple<float, float> translateMatrix(float x, float y, float offset_x, float offset_y);
-    std::tuple<float, float> rotateMatrix(float angle, int x, int y);
     ~Pedal();
 };

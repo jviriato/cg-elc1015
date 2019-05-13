@@ -1,12 +1,8 @@
 #include "Piece.h"
 
 
-Piece::Piece(float x, float y)
+Piece::Piece(double x, double y)
 {
     this->x = x;
     this->y = y;
-}
-
-Piece::~Piece()
-{
 }
