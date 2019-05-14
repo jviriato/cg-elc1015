@@ -1,4 +1,3 @@
-#include "Piece.h"
 #include "Wheel.h"
 
 /*
@@ -87,7 +86,8 @@ void Wheel::drawTire()
     color(0, 0, 0);
     circleFill(x, y, radius, 50);
     // Parte interna da roda
-    color(1, 1, 1);
+    std::vector<double>rgb = RGBtodouble(111, 163, 86);
+    color(rgb[0], rgb[1], rgb[2]);
     circleFill(x, y, radius - inner_border, 50);
 }
 

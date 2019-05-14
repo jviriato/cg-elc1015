@@ -14,6 +14,27 @@ Pedal::Pedal(double x, double y)
     this->y_pedal_dir = this->y - offset_y;
 }
 
+
+double Pedal::getPedalLeftX()
+{
+    return this->x_pedal_esq;
+}
+
+double Pedal::getPedalLeftY()
+{
+    return this->y_pedal_esq;
+}
+
+double Pedal::getPedalRightX()
+{
+    return this->x_pedal_dir;
+}
+
+double Pedal::getPedalRightY()
+{
+    return this->y_pedal_dir;
+}
+
 void Pedal::update()
 {
     double pedal_x1 = this->x_pedal_esq;

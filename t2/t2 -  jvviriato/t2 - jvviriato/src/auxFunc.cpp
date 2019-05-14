@@ -5,8 +5,12 @@
 #include <tuple>
 #include <iostream>
 #include "gl_canvas2d.h"
-
 using namespace std;
+
+// M_PI é definido pelo GCC mas não pelo MinGW
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 /* Função para inverter o eixo do canvas
    @param axis: o eixo a ser invertido
@@ -118,7 +122,7 @@ void bezier(std::vector<std::tuple<double, double>> coords)
                     blending_functions[1] * y2 +
                     blending_functions[2] * y3 +
                     blending_functions[3] * y4;
-        circleFill(xt, yt, 2, 50);
+        point(xt, yt);
     }
 
     // Para mostrar os pontos de controle
@@ -127,4 +131,33 @@ void bezier(std::vector<std::tuple<double, double>> coords)
     // {
     //     circleFill(std::get<0>(coords[i]), std::get<1>(coords[i]), 5, 50);
     // }
+}
+
+double pythagoreanTheorem(double a, double b)
+{
+    return sqrt(a * a + b * b);
+}
+
+double findCos(double a, double b, double c)
+{
+    std::cout << "findcos" << std::endl;
+    double cima = -1 * ((a * a) + (b * b) - (c * c));
+    double baixo = (-2 * a * b);
+    std::cout << "cima: " << cima << " baixo: " << baixo << std::endl;
+    double divisao = cima / baixo;
+    std::cout << "divisao: " << divisao << std::endl;
+    return divisao;
+}
+
+// retorna um cosseno
+double angleBetweenVectors(double x1, double y1, double x2, double y2)
+{
+    std::cout << "findcos" << std::endl;
+
+    double cima = (x1 * x1) + (y1 * y2);
+    double baixo = sqrt((x1 * x1) + (y1 * y1)) * sqrt((x2 * x2) + (y2 * y2));
+    std::cout << "cima: " << cima << " baixo: " << baixo << std::endl;
+    double divisao = cima / baixo;
+    std::cout << "divisao: " << divisao << std::endl;
+    return divisao;
 }

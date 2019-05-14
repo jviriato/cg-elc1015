@@ -26,6 +26,10 @@ private:
 public:
     Pedal(double x, double y);
     Pedal();
+    double getPedalLeftX();
+    double getPedalLeftY();
+    double getPedalRightX();
+    double getPedalRightY();
     void createPedal();
     void update();
     void render();

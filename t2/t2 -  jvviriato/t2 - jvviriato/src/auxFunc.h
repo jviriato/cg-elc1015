@@ -15,6 +15,9 @@ Funções auxiliares para facilitar o desenvolvimento.
 // Inverte o eixo de algo
 int reverseAxis(int axis, int height_of_canvas);
 
+// Teorema de pitágoras
+double pythagoreanTheorem(double a, double b);
+
 // Função auxilidar da RGBtodouble
 double __calcRGB(double x);
 // Calcula o double dado três pontos. Utilizado para a função color
@@ -29,5 +32,9 @@ std::tuple<double, double> rotateMatrix(double angle, double x, double y);
 
 // Funções de curvas
 void bezier(std::vector<std::tuple<double, double>> coords);
+
+double findCos(double a, double b, double c);
+double angleBetweenVectors(double x1, double y1, double x2, double y2);
+
 
 #endif
