@@ -1,0 +1,512 @@
+# depslib dependency file v1.0
+1467405732 source:d:\ufsm\disciplinas\computacao grafica\programas\gl_3_canvasglut\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1467405838 d:\ufsm\disciplinas\computacao grafica\programas\gl_3_canvasglut\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1426358040 d:\ufsm\disciplinas\computacao grafica\programas\gl_3_canvasglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1437565542 d:\ufsm\disciplinas\computacao grafica\programas\gl_3_canvasglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426358040 d:\ufsm\disciplinas\computacao grafica\programas\gl_3_canvasglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1168267666 source:d:\ufsm\disciplinas\computacao grafica\programas\gl_3_canvasglut\src\relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1193146156 d:\ufsm\disciplinas\computacao grafica\programas\gl_3_canvasglut\src\relogio.h
+	"gl_canvas2d.h"
+
+1490702906 source:d:\ufsm\disciplinas\computacao grafica\programas\gl_3_canvasglut\src\main_cpp.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	"Bola.h"
+	"Relogio.h"
+
+1490704699 d:\ufsm\disciplinas\computacao grafica\programas\gl_3_canvasglut\src\bola.h
+	"gl_canvas2d.h"
+
+1531743930 source:c:\users\viriato\downloads\demos\gl_1_canvasglut\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1531743969 c:\users\viriato\downloads\demos\gl_1_canvasglut\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1426358040 c:\users\viriato\downloads\demos\gl_1_canvasglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1437565542 c:\users\viriato\downloads\demos\gl_1_canvasglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426358040 c:\users\viriato\downloads\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1555597486 source:c:\users\viriato\downloads\demos\gl_1_canvasglut\src\main_cpp.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<string>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	"dct.h"
+	"Button.h"
+	"Checkbox.h"
+	"auxFunc.h"
+	"Graphic.h"
+	"gl_canvas2d.h"
+
+1490704699 c:\users\viriato\downloads\demos\gl_1_canvasglut\src\bola.h
+	"gl_canvas2d.h"
+
+1193146156 c:\users\viriato\downloads\demos\gl_1_canvasglut\src\relogio.h
+	"gl_canvas2d.h"
+
+1168267666 source:c:\users\viriato\downloads\demos\gl_1_canvasglut\src\relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1555597204 source:c:\users\viriato\downloads\demos\gl_1_canvasglut\src\auxfunc.cpp
+	"auxFunc.h"
+	<string>
+	"gl_canvas2d.h"
+
+1555597203 c:\users\viriato\downloads\demos\gl_1_canvasglut\src\auxfunc.h
+	<vector>
+
+1555597203 source:c:\users\viriato\downloads\demos\gl_1_canvasglut\src\button.cpp
+	"Button.h"
+	<string>
+	"auxFunc.h"
+
+1555597203 c:\users\viriato\downloads\demos\gl_1_canvasglut\src\button.h
+	"Interface.h"
+	<string>
+
+1555597204 c:\users\viriato\downloads\demos\gl_1_canvasglut\src\interface.h
+	"gl_canvas2d.h"
+	"Interface.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string>
+
+1555597371 source:c:\users\viriato\downloads\demos\gl_1_canvasglut\src\dct.cpp
+	<vector>
+	"dct.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string>
+	<fstream>
+	<iostream>
+
+1555597204 c:\users\viriato\downloads\demos\gl_1_canvasglut\src\dct.h
+	<string>
+	<fstream>
+	<iostream>
+	<vector>
+
+1555597204 source:c:\users\viriato\downloads\demos\gl_1_canvasglut\src\graphic.cpp
+	"Graphic.h"
+	"auxFunc.h"
+
+1555597204 c:\users\viriato\downloads\demos\gl_1_canvasglut\src\graphic.h
+	"Interface.h"
+	<string>
+	<vector>
+
+1555597204 source:c:\users\viriato\downloads\demos\gl_1_canvasglut\src\interface.cpp
+	"Interface.h"
+
+1555597379 source:c:\users\viriato\downloads\demos\gl_1_canvasglut\src\checkbox.cpp
+	"Checkbox.h"
+	<math.h>
+
+1555597204 c:\users\viriato\downloads\demos\gl_1_canvasglut\src\checkbox.h
+	"Interface.h"
+	<string>
+
+1555597204 source:c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\auxfunc.cpp
+	"auxFunc.h"
+	<string>
+	"gl_canvas2d.h"
+
+1555597203 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\auxfunc.h
+	<vector>
+
+1531743969 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1426358040 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1437565542 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426358040 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1555597203 source:c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\button.cpp
+	"Button.h"
+	<string>
+	"auxFunc.h"
+
+1555597203 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\button.h
+	"Interface.h"
+	<string>
+
+1555597204 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\interface.h
+	"gl_canvas2d.h"
+	"Interface.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string>
+
+1555597379 source:c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\checkbox.cpp
+	"Checkbox.h"
+	<math.h>
+
+1555597204 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\checkbox.h
+	"Interface.h"
+	<string>
+
+1555597371 source:c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\dct.cpp
+	<vector>
+	"dct.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string>
+	<fstream>
+	<iostream>
+
+1555597204 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\dct.h
+	<string>
+	<fstream>
+	<iostream>
+	<vector>
+
+1531743930 source:c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1555597204 source:c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\graphic.cpp
+	"Graphic.h"
+	"auxFunc.h"
+
+1555597204 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\graphic.h
+	"Interface.h"
+	<string>
+	<vector>
+
+1555597204 source:c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\interface.cpp
+	"Interface.h"
+
+1555597486 source:c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\main_cpp.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<string>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	"dct.h"
+	"Button.h"
+	"Checkbox.h"
+	"auxFunc.h"
+	"Graphic.h"
+	"gl_canvas2d.h"
+
+1168267666 source:c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1193146156 c:\users\viriato\downloads\t1 - jvviriato\gl_1_canvasglut\src\relogio.h
+	"gl_canvas2d.h"
+
+1555597204 source:c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\auxfunc.cpp
+	"auxFunc.h"
+	<string>
+	"gl_canvas2d.h"
+
+1555597203 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\auxfunc.h
+	<vector>
+
+1531743969 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1426358040 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\include\gl\glut.h
+	"freeglut_std.h"
+
+1437565542 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426358040 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1555597203 source:c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\button.cpp
+	"Button.h"
+	<string>
+	"auxFunc.h"
+
+1555597203 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\button.h
+	"Interface.h"
+	<string>
+
+1555597204 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\interface.h
+	"gl_canvas2d.h"
+	"Interface.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string>
+
+1555597379 source:c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\checkbox.cpp
+	"Checkbox.h"
+	<math.h>
+
+1555597204 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\checkbox.h
+	"Interface.h"
+	<string>
+
+1555597371 source:c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\dct.cpp
+	<vector>
+	"dct.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string>
+	<fstream>
+	<iostream>
+
+1555597204 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\dct.h
+	<string>
+	<fstream>
+	<iostream>
+	<vector>
+
+1531743930 source:c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1555597204 source:c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\graphic.cpp
+	"Graphic.h"
+	"auxFunc.h"
+
+1555597204 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\graphic.h
+	"Interface.h"
+	<string>
+	<vector>
+
+1555597204 source:c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\interface.cpp
+	"Interface.h"
+
+1555597884 source:c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\main_cpp.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<string>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	"dct.h"
+	"Button.h"
+	"Checkbox.h"
+	"auxFunc.h"
+	"Graphic.h"
+	"gl_canvas2d.h"
+
+1168267666 source:c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1193146156 c:\users\viriato\downloads\t1 - jvviriato\t1 - jvviriato\src\relogio.h
+	"gl_canvas2d.h"
+
+1555597204 source:c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\auxfunc.cpp
+	"auxFunc.h"
+	<string>
+	"gl_canvas2d.h"
+
+1555597203 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\auxfunc.h
+	<vector>
+
+1531743969 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1426358040 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\include\gl\glut.h
+	"freeglut_std.h"
+
+1437565542 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426358040 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1555597203 source:c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\button.cpp
+	"Button.h"
+	<string>
+	"auxFunc.h"
+
+1555597203 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\button.h
+	"Interface.h"
+	<string>
+
+1555597204 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\interface.h
+	"gl_canvas2d.h"
+	"Interface.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string>
+
+1555597379 source:c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\checkbox.cpp
+	"Checkbox.h"
+	<math.h>
+
+1555597204 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\checkbox.h
+	"Interface.h"
+	<string>
+
+1555641598 source:c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\dct.cpp
+	<vector>
+	"dct.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string>
+	<fstream>
+	<iostream>
+
+1555639998 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\dct.h
+	<string>
+	<fstream>
+	<iostream>
+	<vector>
+
+1531743930 source:c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1555597204 source:c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\interface.cpp
+	"Interface.h"
+
+1555641342 source:c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\main_cpp.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<string>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	"dct.h"
+	"Button.h"
+	"Checkbox.h"
+	"auxFunc.h"
+	"Graphic.h"
+	"gl_canvas2d.h"
+
+1555597204 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\graphic.h
+	"Interface.h"
+	<string>
+	<vector>
+
+1168267666 source:c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1193146156 c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\relogio.h
+	"gl_canvas2d.h"
+
+1555641640 source:c:\users\user\documents\demos\t1 - jvviriato\t1 - jvviriato\src\graphic.cpp
+	"Graphic.h"
+	"auxFunc.h"
+	<cmath>
+
