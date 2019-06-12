@@ -17,10 +17,10 @@ private:
     // Pontos de controle
     std::vector<CtrlPoint> ctrlPoints;
     std::vector<Point> linePoints;
-
+    double num;
 public:
     Bezier();
-    Bezier(CtrlPoint p1, CtrlPoint p2, CtrlPoint p3, CtrlPoint p4);
+    Bezier(std::vector<CtrlPoint> points);
 
     // Calcula a Bezier
     void calculate();
@@ -34,11 +34,23 @@ public:
     void drawLine();
     // Renderiza a Bezier
     void render(int mouse_x, int mouse_y, int button);
+    // Operações aritméticas com os pontos
     void sub(Point point);
     void add(Point point);
+    
+    // Retorna os pontos da linha da Bezier
     std::vector<Point> getLinePoints();
+    std::vector<CtrlPoint> getCtrlPoints();
+    double getNumberPoints();
+    void setNumberPoints(double value);
+    void drawRepresentationBezier();
+    // Translada a Bezier
     void translate(double offset_x, double offset_y);
+
+    // Rotaciona a Bezier
     void rotateY(double angle);
+    
+    // Verfica por colisões nos pontos de controle
     void checkForCollisions(int mouse_x, int mouse_y, int button);
     ~Bezier();
 };

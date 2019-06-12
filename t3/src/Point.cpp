@@ -70,6 +70,25 @@ void Point::rotateY(double angle)
     zval = new_z;
 }
 
+void Point::rotateX(double angle)
+{
+    double radians_angle = degreesToRadians(angle);
+
+    const double rotation_matrix[4][4] = {
+        {1, 0, 0, 0},
+        {0, cos(radians_angle), -sin(radians_angle), 0},
+        {0, sin(radians_angle), cos(radians_angle), 0},
+        {0, 0, 0, 1}};
+
+    double new_x = ((xval * rotation_matrix[0][0]) + (yval * rotation_matrix[0][1]) + (zval * rotation_matrix[0][2]));
+    double new_y = ((xval * rotation_matrix[1][0]) + (yval * rotation_matrix[1][1]) + (zval * rotation_matrix[1][2]));
+    double new_z = ((xval * rotation_matrix[2][0]) + (yval * rotation_matrix[2][1]) + (zval * rotation_matrix[2][2]));
+
+    xval = new_x;
+    yval = new_y;
+    zval = new_z;
+}
+
 Point Point::toCamera(double d)
 {
     return Point(((xval * d) / zval), ((yval * d) / zval));

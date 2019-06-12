@@ -8,14 +8,16 @@ Bezier::Bezier()
     ctrlPoints.push_back(CtrlPoint(0, 0));
     ctrlPoints.push_back(CtrlPoint(0, 0));
     ctrlPoints.push_back(CtrlPoint(0, 0));
+    num = .1;
 }
 
-Bezier::Bezier(CtrlPoint p1, CtrlPoint p2, CtrlPoint p3, CtrlPoint p4)
+Bezier::Bezier(std::vector<CtrlPoint> points)
 {
-    ctrlPoints.push_back(p1);
-    ctrlPoints.push_back(p2);
-    ctrlPoints.push_back(p3);
-    ctrlPoints.push_back(p4);
+    for (CtrlPoint ctrlPoint : points)
+    {
+        ctrlPoints.push_back(ctrlPoint);
+    }
+    num = .1;
 }
 
 // Calcula a Bezier
@@ -23,7 +25,7 @@ void Bezier::calculate()
 {
     linePoints.clear();
     double t = 0.0;
-    for (t = 0.0; t <= 1.0; t += 0.25)
+    for (t = 0.0; t <= 1.0; t += num)
     {
         double blending_functions[4] = {
             (pow((1 - t), 3)),
@@ -62,9 +64,24 @@ void Bezier::drawControlPoints()
 
 void Bezier::drawLine()
 {
-    for (std::vector<Point>::iterator it = linePoints.begin(); it != linePoints.end(); ++it)
+    double t = 0.0;
+    for (t = 0.0; t <= 1.0; t += 0.01)
     {
-        point(it->x(), it->y());
+        double blending_functions[4] = {
+            (pow((1 - t), 3)),
+            (3 * t * (pow((1 - t), 2))),
+            (3 * t * t * (1 - t)),
+            (t * t * t)};
+        double xt = blending_functions[0] * ctrlPoints[0].x() +
+                    blending_functions[1] * ctrlPoints[1].x() +
+                    blending_functions[2] * ctrlPoints[2].x() +
+                    blending_functions[3] * ctrlPoints[3].x();
+
+        double yt = blending_functions[0] * ctrlPoints[0].y() +
+                    blending_functions[1] * ctrlPoints[1].y() +
+                    blending_functions[2] * ctrlPoints[2].y() +
+                    blending_functions[3] * ctrlPoints[3].y();
+        point(xt, yt);
     }
 }
 
@@ -153,6 +170,22 @@ void Bezier::add(Point point)
 std::vector<Point> Bezier::getLinePoints()
 {
     return linePoints;
+}
+
+std::vector<CtrlPoint> Bezier::getCtrlPoints()
+{
+    return ctrlPoints;
+}
+double Bezier::getNumberPoints()
+{
+    return num;
+}
+void Bezier::setNumberPoints(double value)
+{
+    num = value;
+}
+void Bezier::drawRepresentationBezier()
+{
 }
 
 Bezier::~Bezier() {}

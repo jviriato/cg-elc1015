@@ -18,7 +18,7 @@ void Scene::draw()
 
 Point Scene::getMiddleOfScene()
 {
-
+    return center;
 }
 
 Scene::~Scene()

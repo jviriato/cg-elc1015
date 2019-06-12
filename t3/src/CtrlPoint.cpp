@@ -1,5 +1,12 @@
 #include "CtrlPoint.h"
 
+CtrlPoint::CtrlPoint()
+{
+    xval = 0;
+    yval = 0;
+}
+
+
 CtrlPoint::CtrlPoint(double x, double y)
 {
     xval = x;
