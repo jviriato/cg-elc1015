@@ -27,6 +27,11 @@ Point Point::sub(Point another) {
   return Point(x, y, z);
 }
 
+double Point::prod_escalar(Point another)
+{
+  return (xval * another.x()) + (yval * another.y()) + (zval * another.z());
+}
+
 double Point::norm() {
   return std::sqrt(pow(x(), 2) + pow(y(), 2) + pow(z(), 2));
 }
@@ -51,7 +56,7 @@ double Point::distance(Point another) {
 void Point::rotateY(double angle) {
   double radians_angle = degreesToRadians(angle);
 
-  const double rotation_matrix[4][4] = {
+  const double rotation_matrix[5][5] = {
       {cos(radians_angle), 0, sin(radians_angle), 0},
       {0, 1, 0, 0},
       {-sin(radians_angle), 0, cos(radians_angle), 0},

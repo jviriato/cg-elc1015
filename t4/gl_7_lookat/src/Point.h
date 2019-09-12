@@ -25,6 +25,7 @@ public:
     // Operações com pontos
     Point sub(Point another);
     Point add(Point another);
+    double prod_escalar(Point another);
 
     // Norma do vetor
     double norm();

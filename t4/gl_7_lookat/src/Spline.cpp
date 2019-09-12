@@ -81,14 +81,14 @@ void Spline::drawLine() {
       Point antes_do_anterior = linePoints[i - 2];
       glColor3f(0, 0, 1);
       glBegin(GL_POLYGON);
-      cout << atual.x() << ", " << atual.y() << ", " << atual.z() << endl;
-      Point u = calculateBorder(atual, anterior, 10);
+      // cout << atual.x() << ", " << atual.y() << ", " << atual.z() << endl;
+      Point u = calculateBorder(atual, anterior, 30);
       glVertex3f(u.x(), u.y(), u.z());
-      u = calculateBorder(atual, anterior, -10);
+      u = calculateBorder(atual, anterior, -30);
       glVertex3f(u.x(), u.y(), u.z());
-      Point v = calculateBorder(anterior, antes_do_anterior, -10);
+      Point v = calculateBorder(anterior, antes_do_anterior, -30);
       glVertex3f(v.x(), v.y(), v.z());
-      v = calculateBorder(anterior, antes_do_anterior, 10);
+      v = calculateBorder(anterior, antes_do_anterior, 30);
       glVertex3f(v.x(), v.y(), v.z());
       glEnd();
     }
@@ -96,9 +96,7 @@ void Spline::drawLine() {
 }
 
 void Spline::draw() {
-  // color(0, 1, 0);
   drawLine();
-  // color(1, 0, 0);
   drawControlPoints();
 }
 
