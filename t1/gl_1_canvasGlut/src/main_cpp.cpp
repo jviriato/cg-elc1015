@@ -272,6 +272,19 @@ void render()
 {
    renderScreen();
 
+   float x = 0;
+   float y = 0;
+   float angle = 0.0f;
+   x++;
+   for (int i = 0; i < 10000; i++)
+   {
+      angle = 0.01 * i;
+      x = 300 + angle * cos(angle);
+      y = 300 + angle * sin(angle);
+
+      point(x, y);
+   }
+
    for (auto &button : buttons)
    {
       button->render();

@@ -195,7 +195,7 @@ void display(void) {
   s->calculate();
   vector<Point> pts = s->getLinePoints();
   gluLookAt(408.138, 100,
-            369.887,           // from. Posicao onde a camera esta posicionada
+            369.887 - 30,           // from. Posicao onde a camera esta posicionada
             408.138, 0, 380.7, // to. Posicao absoluta onde a camera esta vendo
             0, 1, 0);          // up. Vetor Up.
   s->draw();
