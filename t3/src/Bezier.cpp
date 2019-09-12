@@ -1,7 +1,7 @@
 #include "Bezier.h"
 #include "Point.h"
 #include "CtrlPoint.h"
-#include "iostream"
+#include <iostream>
 Bezier::Bezier()
 {
     ctrlPoints.push_back(CtrlPoint(0, 0));
@@ -25,6 +25,7 @@ void Bezier::calculate()
 {
     linePoints.clear();
     double t = 0.0;
+    int n = 4;
     for (t = 0.0; t <= 1.0; t += num)
     {
         double blending_functions[4] = {
@@ -65,7 +66,7 @@ void Bezier::drawControlPoints()
 void Bezier::drawLine()
 {
     double t = 0.0;
-    for (t = 0.0; t <= 1.0; t += 0.01)
+    for (t = 0.0; t <= 1.0; t += 0.001)
     {
         double blending_functions[4] = {
             (pow((1 - t), 3)),
