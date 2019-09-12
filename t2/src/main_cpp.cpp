@@ -9,7 +9,8 @@
 #include <iostream>
 #include <ctime>
 #include "gl_canvas2d.h"
-
+#include "time.h"
+#include "sys/time.h"
 // Includes do T2
 #include "auxFunc.h"
 #include "Person.h"
@@ -17,6 +18,10 @@
 #include "Tree.h"
 #include "Bush.h"
 
+#include <unistd.h>
+
+#define FPS 20
+timeval start, fim;
 // M_PI é definido pelo GCC mas não pelo MinGW
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -43,6 +48,16 @@ std::vector<Bush *> bush;
 int mouse_x = 0;
 int mouse_y = 0;
 int mouse_state = 0;
+
+void fps() {
+  double runtime = fim.tv_sec + fim.tv_usec / 1000000.0 - start.tv_sec -
+                   start.tv_usec / 1000000.0;
+  double duration = 1000 / FPS - runtime * 1000;
+  if (duration > 0)
+      // Sleep(duration);
+      usleep(duration);
+  // cout << 60 - duration << endl;
+}
 
 //  Classe que pinta o fundo.
 void buildBackground()
@@ -90,21 +105,42 @@ void renderScreen()
    }
    b->render();
    p->render();
+   if (true)
+   {
+      b->update();
+      color(0, 1, 0);
+      p->l1->update(b->pedal->getPedalRightX(), b->pedal->getPedalRightY());
+      p->l2->update(b->pedal->getPedalLeftX(), b->pedal->getPedalLeftY());
+      for (vector<Tree *>::iterator itr = t.begin(), itr_end = t.end(); itr != itr_end; ++itr)
+      {
+         (*itr)->update();
+      }
+      for (vector<Bush *>::iterator itr = bush.begin(), itr_end = bush.end(); itr != itr_end; ++itr)
+      {
+         (*itr)->update();
+      }
+      usleep(25500);
+      // Sleep(25500);
+
+   }
 }
 
 //funcao chamada continuamente. Deve-se controlar o que desenhar por meio de variaveis
 //globais que podem ser setadas pelo metodo keyboard()
 void render()
 {
+   gettimeofday(&start, NULL);
    buildBackground();
    renderScreen();
    coordsOfMouse(mouse_x, mouse_y);
+   gettimeofday(&fim, NULL);
+   fps();
 }
-
+int keyg = 'w';
 //funcao chamada toda vez que uma tecla for pressionada
 void keyboard(int key)
 {
-   if (key == 'w')
+   if (keyg == 'w')
    {
       b->update();
       color(0, 1, 0);
